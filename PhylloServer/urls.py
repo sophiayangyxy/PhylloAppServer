@@ -1,4 +1,4 @@
-"""PhylloServer URL Configuration
+"""PhylloApp_server URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.8/topics/http/urls/
@@ -15,7 +15,17 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from rest_framework.urlpatterns import format_suffix_patterns
+from main import views
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'stories/$', views.StoryList.as_view()),
+    url(r'stories/(?P<pk>[0-9]+)$', views.StoryDetail.as_view()),
+    #url(r'stories/(?P<longitude>[0-9]+)/(?P<latitude>[0-9]+)/(?P<radius>[0-9]+)', views.LocationStoryList.as_view()),
+    url(r'stories/(?P<longitude>[1-9][0-9]*\.?[0-9]*([Ee][+-]?[0-9]+)?)/'
+        r'(?P<latitude>[1-9][0-9]*\.?[0-9]*([Ee][+-]?[0-9]+)?)/'
+        r'(?P<radius>[0-9]+)$', views.LocationStoryList.as_view()),
 ]
+
+urlpatterns = format_suffix_patterns(urlpatterns)  # Not being used yet
