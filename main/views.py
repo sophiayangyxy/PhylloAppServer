@@ -39,7 +39,7 @@ class StoryList(APIView):
         # stories = Story.objects.all()
         # serializer = StorySerializer(stories, many=True)
         # return Response(serializer.data)
-        return "hello, world\n"
+        return Response('hello, world')
 
     def post(self, request, format=None):
         # Store the location information
