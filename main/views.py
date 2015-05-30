@@ -45,7 +45,8 @@ class StoryList(APIView):
         # Store the location information
         serializer = StorySerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            story = serializer.save()
+            story.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
