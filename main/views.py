@@ -55,16 +55,16 @@ class StoryDetail(APIView):
     Retrieve, update or delete a story instance
     """
     def get_object(self, pk):
-        return Response("hello world lalala")
-        # try:
-        #     return Story.objects.get(pk=pk)
-        # except Story.DoesNotExist:
-        #     raise Http404
+        try:
+            return Story.objects.get(pk=pk)
+        except Story.DoesNotExist:
+            raise Http404
 
     def get(self, request, pk, format=None):
-        story = self.get_object(pk)
-        serializer = StorySerializer(story)
-        return Response(serializer.data)
+        # story = self.get_object(pk)
+        # serializer = StorySerializer(story)
+        # return Response(serializer.data)
+        return Response("hello world lalala")
 
     # def put(self, request, pk, format=None):
 
