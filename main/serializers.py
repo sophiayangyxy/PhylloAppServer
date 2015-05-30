@@ -45,7 +45,7 @@ class StorySerializer(serializers.ModelSerializer):
         """
         Create and return a new 'Story' instance, given the validated data
         """
-        return Story.objects.create(validated_data)
+        return Story.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
         """
