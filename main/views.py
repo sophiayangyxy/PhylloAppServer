@@ -36,10 +36,10 @@ class StoryList(APIView):
     List all the stories, or create a new one
     """
     def get(self, request, format=None):
-        # stories = Story.objects.all()
-        # serializer = StorySerializer(stories, many=True)
-        # return Response(serializer.data)
-        return Response("general for testing")
+        stories = Story.objects.all()
+        serializer = StorySerializer(stories, many=True)
+        return Response(serializer.data)
+        # return Response("general for testing")
 
     def post(self, request, format=None):
         # Store the location information
