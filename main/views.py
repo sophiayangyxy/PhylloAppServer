@@ -36,10 +36,10 @@ class StoryList(APIView):
     List all the stories, or create a new one
     """
     def get(self, request, format=None):
-        stories = Story.objects.all()
-        serializer = StorySerializer(stories, many=True)
-        return Response(serializer.data)
-        # return Response('hello, world')
+        # stories = Story.objects.all()
+        # serializer = StorySerializer(stories, many=True)
+        # return Response(serializer.data)
+        return Response("general for testing")
 
     def post(self, request, format=None):
         # Store the location information
@@ -55,10 +55,11 @@ class StoryDetail(APIView):
     Retrieve, update or delete a story instance
     """
     def get_object(self, pk):
-        try:
-            return Story.objects.get(pk=pk)
-        except Story.DoesNotExist:
-            raise Http404
+        return Response("hello world lalala")
+        # try:
+        #     return Story.objects.get(pk=pk)
+        # except Story.DoesNotExist:
+        #     raise Http404
 
     def get(self, request, pk, format=None):
         story = self.get_object(pk)
