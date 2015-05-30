@@ -61,10 +61,9 @@ class StoryDetail(APIView):
             raise Http404
 
     def get(self, request, pk, format=None):
-        # story = self.get_object(pk)
-        # serializer = StorySerializer(story)
-        # return Response(serializer.data)
-        return Response("hello world lalala")
+        story = self.get_object(pk)
+        serializer = StorySerializer(story)
+        return Response(serializer.data)
 
     # def put(self, request, pk, format=None):
 
