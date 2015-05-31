@@ -33,7 +33,7 @@ class LocationStoryList(generics.ListAPIView):
 
 class StoryNew(APIView):
     def post(self, request, format=None):
-        return Response('This is POST request')
+        return Response(request.data)
 
 
 class StoryList(APIView):
