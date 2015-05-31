@@ -58,4 +58,7 @@ class Story(models.Model):
             story.tags.add(tag)
         story.save()
 
+    class Meta:
+        ordering = ['-timestamp']
+
 
