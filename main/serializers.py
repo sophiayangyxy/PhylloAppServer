@@ -34,13 +34,28 @@ from main.models import Story, Poster, Location, Tag, TYPE_CHOICES
 #     # Need to set as blank somewhere for serializer.is_valid() to return True
 
 
+class UnixEpochDateField(serializers.DateTimeField):
+    def to_native(self, value):
+        """ Return epoch time for a datetime object or ``None``"""
+        import time
+        try:
+            return int(time.mktime(value.timetuple()))
+        except (AttributeError, TypeError):
+            return None
+
+    def from_native(self, value):
+        import datetime
+        return datetime.datetime.fromtimestamp(int(value))
+
+
 class StorySerializer(serializers.ModelSerializer):
     originalPoster = serializers.StringRelatedField()
     tags = serializers.StringRelatedField(many=True)
+    unixTimestamp = UnixEpochDateField(source='timestamp')
 
     class Meta:
         model = Story
-        fields = ('type', 'title', 'content', 'timestamp', 'originalPoster', 'tags')
+        fields = ('type', 'title', 'content', 'unixTimestamp', 'originalPoster', 'tags')
 
     def create(self, validated_data):
         """
