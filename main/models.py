@@ -42,14 +42,12 @@ class Story(models.Model):
     tags = models.ManyToManyField(Tag, related_name='related_story')
 
     @classmethod
-    def create(cls, type, title, content, longitude, latitude, tagList):
+    def create(cls, type, title, content, longitude, latitude, tagList, originalPoster):
         loc1 = Location(longitude=longitude, latitude=latitude)
         loc1.save()
-        poster = Poster(username="user4", points=100)
+        poster = Poster(username=originalPoster, points=100)
         poster.save()
-        tag = Tag(name="story")
-        tag.save()
-        story = Story(type=type, title=title, content=content)
+        story = Story(type=type, title=title, content=content, location=loc1, originalPoster=poster)
         for t in tagList:
             tag = Tag(name=t)
             tag.save()
