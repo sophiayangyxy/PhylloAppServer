@@ -21,6 +21,7 @@ from main import views
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'stories/$', views.StoryList.as_view()),
+    url(r'stories/new$', views.StoryNew.as_view()),
     url(r'stories/(?P<pk>[0-9]+)$', views.StoryDetail.as_view()),
     #url(r'stories/(?P<longitude>[0-9]+)/(?P<latitude>[0-9]+)/(?P<radius>[0-9]+)', views.LocationStoryList.as_view()),
     url(r'stories/(?P<longitude>[1-9][0-9]*\.?[0-9]*([Ee][+-]?[0-9]+)?)/'

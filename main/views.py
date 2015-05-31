@@ -31,6 +31,11 @@ class LocationStoryList(generics.ListAPIView):
         return queryset
 
 
+class StoryNew(APIView):
+    def post(self, request, format=None):
+        return Response('This is POST request')
+
+
 class StoryList(APIView):
     """
     List all the stories, or create a new one
@@ -49,7 +54,6 @@ class StoryList(APIView):
             story.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        #return Response("you posted a new story!")
 
 
 class StoryDetail(APIView):
