@@ -37,6 +37,7 @@ from main.models import Story, Poster, Location, Tag, TYPE_CHOICES
 class StorySerializer(serializers.ModelSerializer):
     originalPoster = serializers.StringRelatedField()
     tags = serializers.StringRelatedField(many=True)
+    location = serializers.StringRelatedField()
 
     class Meta:
         model = Story

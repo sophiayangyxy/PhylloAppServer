@@ -24,6 +24,9 @@ class Location(models.Model):
     latitude = models.DecimalField(max_digits=20, decimal_places=10)
     # radius = models.IntegerField() # Doesn't make sense to put it here?
 
+    def __unicode__(self):
+        return '%f %f' % (self.longitude, self.latitude)
+
 
 class Tag(models.Model):
     name = models.CharField(max_length=255)
