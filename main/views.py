@@ -33,9 +33,7 @@ class LocationStoryList(generics.ListAPIView):
 
 class StoryNew(APIView):
     def post(self, request, format=None):
-        print request.data
-        print request.data['type']
-        #Story.create(request.POST['type'], request.POST['title'], request.POST['content'])
+        Story.create(request.data['type'], request.data['title'], request.data['content'])
         return Response('This is a POST request')
 
 
