@@ -41,4 +41,10 @@ class Story(models.Model):
     location = models.ForeignKey(Location, null=True)
     tags = models.ManyToManyField(Tag, related_name='related_story')
 
+    @classmethod
+    def create(cls, type, title, content):
+        story = Story(type=type, title=title, content=content)
+        story.timestamp = datetime.datetime.now()
+        story.save()
+
 
