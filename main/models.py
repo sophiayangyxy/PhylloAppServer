@@ -43,9 +43,9 @@ class Story(models.Model):
 
     @classmethod
     def create(cls, type, title, content):
-        loc1 = Location(10, 20)
+        loc1 = Location(longitude=10, latitude=20)
         loc1.save()
-        poster = Poster(username=user4, points=100)
+        poster = Poster(username="user4", points=100)
         poster.save()
         tag = Tag(name="story")
         tag.save()
