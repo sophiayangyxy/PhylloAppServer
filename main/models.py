@@ -43,8 +43,13 @@ class Story(models.Model):
 
     @classmethod
     def create(cls, type, title, content):
+        loc1 = Location(10, 20)
+        loc1.save()
+        poster = Poster(username=user4, points=100)
+        poster.save()
+        tag = Tag(name="story")
+        tag.save()
         story = Story(type=type, title=title, content=content)
-        story.timestamp = datetime.datetime.now()
         story.save()
 
 
