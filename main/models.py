@@ -44,14 +44,16 @@ class Story(models.Model):
     @classmethod
     def create(cls, type, title, content, longitude, latitude, tagList):
         loc1 = Location(longitude=longitude, latitude=latitude)
-        for t in tagList:
-            print t
         loc1.save()
         poster = Poster(username="user4", points=100)
         poster.save()
         tag = Tag(name="story")
         tag.save()
         story = Story(type=type, title=title, content=content)
+        for t in tagList:
+            tag = Tag(name=t)
+            tag.save()
+            story.tags.add(tag)
         story.save()
 
 
