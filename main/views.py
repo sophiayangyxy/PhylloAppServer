@@ -42,14 +42,14 @@ class StoryList(APIView):
         # return Response("general for testing")
 
     def post(self, request, format=None):
-        # Store the location information
-        # serializer = StorySerializer(data=request.data)
-        # if serializer.is_valid():
-        #     story = serializer.save()
-        #     story.save()
-        #     return Response(serializer.data, status=status.HTTP_201_CREATED)
-        # return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        return Response(request.data)
+        Store the location information
+        serializer = StorySerializer(data=request.data)
+        if serializer.is_valid():
+            story = serializer.save()
+            story.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        #return Response("you posted a new story!")
 
 
 class StoryDetail(APIView):
