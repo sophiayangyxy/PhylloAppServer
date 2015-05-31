@@ -48,10 +48,10 @@ class Story(models.Model):
         poster = Poster(username=originalPoster, points=100)
         poster.save()
         story = Story(type=type, title=title, content=content, location=loc1, originalPoster=poster)
-        for t in tagList:
-            tag = Tag(name=t)
-            tag.save()
-            story.tags.add(tag)
+        # for t in tagList:
+        #     tag = Tag(name=t)
+        #     tag.save()
+        #     story.tags.add(tag)
         story.save()
 
 
