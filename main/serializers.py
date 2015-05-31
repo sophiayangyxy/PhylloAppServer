@@ -24,7 +24,6 @@ from main.models import Story, Poster, Location, Tag, TYPE_CHOICES
 
 
 # class StorySerializer(serializers.Serializer):
-#     pk = serializers.IntegerField(read_only=True)
 #     type = serializers.ChoiceField(choices=TYPE_CHOICES, required=False)
 #     title = serializers.CharField(max_length=140, required=False)
 #     content = serializers.CharField(max_length=10000, required=False)
@@ -32,14 +31,16 @@ from main.models import Story, Poster, Location, Tag, TYPE_CHOICES
 #     originalPoster = serializers.PrimaryKeyRelatedField(queryset=Poster.objects.all(), required=False)
 #     location = serializers.PrimaryKeyRelatedField(queryset=Location.objects.all(), required=False)
 #     tags = serializers.PrimaryKeyRelatedField(queryset=Tag.objects.all(), many=True, required=False)
-    # Need to set as blank somewhere for serializer.is_valid() to return True
+#     # Need to set as blank somewhere for serializer.is_valid() to return True
 
 
 class StorySerializer(serializers.ModelSerializer):
+    originalPoster = serializers.StringRelatedField()
+    tags = serializers.StringRelatedField(many=True)
 
     class Meta:
         model = Story
-        fields = ('id', 'type', 'title', 'content', 'timestamp', 'originalPoster', 'location', 'tags')
+        fields = ('type', 'title', 'content', 'timestamp', 'originalPoster', 'tags')
 
     def create(self, validated_data):
         """
