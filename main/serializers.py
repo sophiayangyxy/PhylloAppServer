@@ -40,7 +40,7 @@ class StorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Story
-        fields = ('type', 'title', 'content', 'timestamp', 'originalPoster', 'tags')
+        fields = ('id', 'type', 'title', 'content', 'timestamp', 'originalPoster', 'location', 'tags')
 
     def create(self, validated_data):
         """
