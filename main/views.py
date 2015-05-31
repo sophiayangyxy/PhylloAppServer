@@ -42,7 +42,7 @@ class StoryList(APIView):
         # return Response("general for testing")
 
     def post(self, request, format=None):
-        Store the location information
+        # Store the location information
         serializer = StorySerializer(data=request.data)
         if serializer.is_valid():
             story = serializer.save()
