@@ -24,8 +24,6 @@ class LocationStoryList(generics.ListAPIView):
         """ This view returns a list of all the stories for the given location """
         queryset = Story.objects.all()
         # Should actually check if either of them is None
-        print float(radius)
-        print float(latitude)-float(radius), float(latitude)+float(radius)
         queryset = queryset.filter(
             location__latitude__gte=float(latitude)-float(radius), location__latitude__lte=float(latitude)+float(radius)
         ).filter(
@@ -82,8 +80,20 @@ class StoryDetail(APIView):
 
 class UserNew(APIView):
     def post(self, request, format=None):
-        print request.data
-        # user = User(username=request.data['userName'], password=request.data['password'])
-        # user.save()
-        return Response('HAHAHAHA')
+        try:
+            user = User.objects.get(username=request.data['userName'])
+        except User.DoesNotExist:
+            user = User(username=request.data['userName'], password=request.data['password'])
+            user.save()
+            return Response('User created')
+        return Response('User already exists', status=status.HTTP_400_BAD_REQUEST)
 
+class UserLogin(APIView):
+    def post(self, request, format=None):
+        try:
+            user = User.objects.get(username=request.data['userName'])
+        except User.DoesNotExist:
+            return Response('User does not exist', status=status.HTTP_400_BAD_REQUEST)
+        if user.check_password(request.data['password']):
+            return Response('Logged in')
+        return Response('Password incorrect', status=status.HTTP_400_BAD_REQUEST)
