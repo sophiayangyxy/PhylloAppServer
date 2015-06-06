@@ -24,6 +24,8 @@ class LocationStoryList(generics.ListAPIView):
         """ This view returns a list of all the stories for the given location """
         queryset = Story.objects.all()
         # Should actually check if either of them is None
+        print float(radius)
+        print float(latitude)-float(radius), float(latitude)+float(radius)
         queryset = queryset.filter(
             location__latitude__gte=float(latitude)-float(radius), location__latitude__lte=float(latitude)+float(radius)
         ).filter(
