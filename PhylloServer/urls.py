@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'stories/(?P<longitude>[1-9][0-9]*\.?[0-9]*([Ee][+-]?[0-9]+)?)/'
         r'(?P<latitude>[1-9][0-9]*\.?[0-9]*([Ee][+-]?[0-9]+)?)/'
         r'(?P<radius>[0-9]+)$', views.LocationStoryList.as_view()),
+    url(r'users/new$', views.UserNew.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)  # Not being used yet

@@ -6,6 +6,7 @@ from rest_framework import generics
 from django.http import Http404
 from main.models import Story
 from main.serializers import StorySerializer
+from django.contrib.auth.models import User
 
 
 # Create your views here
@@ -75,4 +76,12 @@ class StoryDetail(APIView):
     # def put(self, request, pk, format=None):
 
     # def delete(self, request, pk, format=None):
+
+
+class UserNew(APIView):
+    def post(self, request, format=None):
+        print request.data
+        # user = User(username=request.data['userName'], password=request.data['password'])
+        # user.save()
+        return Response('HAHAHAHA')
 
