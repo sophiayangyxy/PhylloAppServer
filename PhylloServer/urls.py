@@ -25,7 +25,7 @@ urlpatterns = [
     url(r'stories/(?P<pk>[0-9]+)$', views.StoryDetail.as_view()),
     url(r'stories/(?P<longitude>-?[0-9]\d*(\.\d+)?)/'
         r'(?P<latitude>-?[0-9]\d*(\.\d+)?)/'
-        r'(?P<radius>[1-9][0-9]*\.?[0-9]*([Ee][+-]?[0-9]+)?)', views.LocationStoryList.as_view()),
+        r'(?P<radius>[0-9]\d*(\.\d+)?)', views.LocationStoryList.as_view()),
     #url(r'stories/(?P<longitude>[1-9][0-9]*\.?[0-9]*([Ee][+-]?[0-9]+)?)/'
         #r'(?P<latitude>[1-9][0-9]*\.?[0-9]*([Ee][+-]?[0-9]+)?)/'
         #r'(?P<radius>[1-9][0-9]*\.?[0-9]*([Ee][+-]?[0-9]+)?)', views.LocationStoryList.as_view()),
