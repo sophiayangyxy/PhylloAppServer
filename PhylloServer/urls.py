@@ -23,10 +23,10 @@ urlpatterns = [
     url(r'stories/$', views.StoryList.as_view()),
     url(r'stories/new$', views.StoryNew.as_view()),
     url(r'stories/(?P<pk>[0-9]+)$', views.StoryDetail.as_view()),
-    url(r'stories/(?P<longitude>^-?[0-9]\d*(\.\d+)?$)/'
-        r'(?P<latitude>^-?[0-9]\d*(\.\d+)?$)/(?P<radius>[0-9]+)', views.LocationStoryList.as_view()),
-    #url(r'stories/(?P<longitude>-?[1-9][0-9]*\.?[0-9]*([Ee][+-]?[0-9]+)?)/'
-        #r'(?P<latitude>-?[1-9][0-9]*\.?[0-9]*([Ee][+-]?[0-9]+)?)/'
+    url(r'stories/(?P<longitude>(\+|-)?([0-9]+(\.[0-9]+)))/'
+        r'(?P<latitude>(\+|-)?([0-9]+(\.[0-9]+)))/(?P<radius>[0-9]+)', views.LocationStoryList.as_view()),
+    #url(r'stories/(?P<longitude>[1-9][0-9]*\.?[0-9]*([Ee][+-]?[0-9]+)?)/'
+        #r'(?P<latitude>[1-9][0-9]*\.?[0-9]*([Ee][+-]?[0-9]+)?)/'
         #r'(?P<radius>[1-9][0-9]*\.?[0-9]*([Ee][+-]?[0-9]+)?)', views.LocationStoryList.as_view()),
     url(r'users/new$', views.UserNew.as_view()),
     url(r'users/login$', views.UserLogin.as_view()),
