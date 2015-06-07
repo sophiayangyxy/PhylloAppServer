@@ -83,7 +83,8 @@ class UserNew(APIView):
         try:
             user = User.objects.get(username=request.data['userName'])
         except User.DoesNotExist:
-            user = User(username=request.data['userName'], password=request.data['password'])
+            user = User(username=request.data['userName'])
+            user.set_password(request.data['password'])
             user.save()
             return Response('User created')
         return Response('User already exists', status=status.HTTP_400_BAD_REQUEST)
