@@ -92,8 +92,9 @@ class UserLogin(APIView):
     def post(self, request, format=None):
         try:
             user = User.objects.get(username=request.data['userName'])
+            if user.check_password(request.data['password']):
+                return Response('Logged in')
+            else:
+                return Response('Password incorrect', status=status.HTTP_400_BAD_REQUEST)
         except User.DoesNotExist:
             return Response('User does not exist', status=status.HTTP_400_BAD_REQUEST)
-        if user.check_password(request.data['password']):
-            return Response('Logged in')
-        return Response('Password incorrect', status=status.HTTP_400_BAD_REQUEST)
